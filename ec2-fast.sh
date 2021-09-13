@@ -96,7 +96,8 @@ rm c9.service
 # Remove entire bad folder
 rm -fR gg
 
-cd ~
+cd ~/workspace
+rm -fR ./greengrass
 rm -fR /greengrass
 
 n 12
