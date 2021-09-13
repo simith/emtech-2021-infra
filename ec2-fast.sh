@@ -70,11 +70,9 @@ curl -O --retry 5 https://s3-us-west-2.amazonaws.com/iotworkshop/refreshcontent.
 chmod +x refreshcontent.sh
 cd ~
 
-# Download code and lab assets
-cd workspace
-curl -O --retry 5 https://s3-us-west-2.amazonaws.com/iotworkshop/iotworkshopassets.zip
-unzip iotworkshopassets.zip
-rm iotworkshopassets.zip
+# setup the git repo
+cd ~/workspace
+git clone https://github.com/simith/emtech-2021-labs.git
 cd ~
 
 # Setup the CLI default region
@@ -142,15 +140,7 @@ n 12
 # update the symlink for gg
 sudo cp /home/ec2-user/n/bin/node /usr/local/bin/nodejs12
 
-# GG/ML stuff
-cd /tmp/
-wget https://s3-us-west-2.amazonaws.com/iotworkshop/greengrass-ml-ec2.tgz
-tar zxf /tmp/greengrass-ml-ec2.tgz -C /home/ec2-user/
-sudo usermod -a -G ggc_group ec2-user
-sudo mkdir -p -m 775 /greengrass-ml/images/cifar10
-sudo chown -R ggc_user:ggc_group /greengrass-ml
-sudo chmod g+s /greengrass-ml/images/cifar10
-sudo pip3 install greengrasssdk numpy file-magic mxnet==1.2.1 scikit-image
+
 
 # Signal CF to let the user proceed while the instance reboots
 echo "Tell CloudFormation we're done ..."
