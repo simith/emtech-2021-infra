@@ -54,19 +54,16 @@ sudo systemctl start node-red
 
 # Download and setup the website locally
 echo "Installing portal content ..."
-curl -O --retry 5 https://s3-us-west-2.amazonaws.com/iotworkshop/iotworkshopsite.zip
+curl -O --retry 5 https://emtech2021cloud.s3.ap-southeast-1.amazonaws.com/iotworkshopsite.zip
 sudo mv iotworkshopsite.zip /var/www/html
 cd /var/www/html
 sudo rm index.html
-sudo rm main.css
-sudo rm internet-of-things.png
-sudo rm countdown.js
 sudo unzip iotworkshopsite.zip
 sudo rm iotworkshopsite.zip
 cd ~
 mkdir tools 
 cd tools
-curl -O --retry 5 https://s3-us-west-2.amazonaws.com/iotworkshop/refreshcontent.sh
+curl -O --retry 5 https://emtech2021cloud.s3.ap-southeast-1.amazonaws.com/refreshcontent.sh
 chmod +x refreshcontent.sh
 cd ~
 
@@ -85,13 +82,7 @@ echo "output = json" >> credentials
 cat /home/ec2-user/region.txt >> credentials
 cd ~
 
-# Setup node-red extensions
-echo "Setup Node-Red extensions ..."
-cd ~
-mkdir aws
-cd aws
-curl -O --retry 5 https://s3-us-west-2.amazonaws.com/iotworkshop/sensehatsim.zip
-unzip sensehatsim.zip
+# Link node
 /home/ec2-user/n/bin/npm link
 sudo systemctl restart node-red.service
 cd ~
@@ -104,43 +95,14 @@ rm c9.service
 # Setup GG support tools
 # Remove entire bad folder
 rm -fR gg
-# continue ....
-## GGv1 is gone - moving on with GGv2 in the future
-#echo "Setup Greengrass support tools ..."
-#mkdir gg
-#cd gg
-#curl -O --retry 5 https://s3-us-west-2.amazonaws.com/iotworkshop/gg-provisioner.zip
-#unzip gg-provisioner.zip
-#chmod +x setup.sh
-#chmod +x deploy.sh
-#cd ~
-#cd workspace
-#mkdir greengrass
-#cd greengrass
-#ln -s /home/ec2-user/gg/functions/HelloWorldPython/
-#ln -s /home/ec2-user/gg/functions/RatchetHello/
-#ln -s /home/ec2-user/gg/functions/RatchetButtonPress/
-#cd ~
 
-# Update the Greengrass installation to the latest
-# When the AMI master is updated this can be removed
-
-#echo "Setting up the Greengrass bits ..."
 cd ~
 rm -fR /greengrass
-#curl -O --retry 5 https://d1onfpft10uf5o.cloudfront.net/greengrass-core/downloads/1.10.0/greengrass-linux-x86-64-1.10.0.tar.gz
-#sudo tar -zxvf greengrass-linux-x86-64-1.10.0.tar.gz -C /
-#cd ~
-
-# Update NodeJS to 12
-# When the AMI master is updated this can be removed
 
 n 12
 
 # update the symlink for gg
 sudo cp /home/ec2-user/n/bin/node /usr/local/bin/nodejs12
-
-
 
 # Signal CF to let the user proceed while the instance reboots
 echo "Tell CloudFormation we're done ..."
