@@ -996,7 +996,7 @@
         }
     },
     "Outputs": {
-        "WebIP": {
+        "Cloud9": {
             "Description": "AWS IoT Workshop IP",
             "Value": {
                 "Fn::Join": [
@@ -1020,7 +1020,7 @@
                                 }
                             ]
                         },
-                        "/"
+                        ":3389/ide.html"
                     ]
                 ]
             }
