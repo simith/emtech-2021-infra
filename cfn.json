@@ -840,11 +840,7 @@
                             "Effect": "Allow",
                             "Action": [
                                 "iot:*",
-                                "greengrass:*",
-                                "sqs:*",
-                                "sns:*",
-                                "firehose:*",
-                                "ecr:*",
+                                "s3:*",
                                 "lambda:*",
                                 "iam:GetRole",
                                 "iam:UpdateAssumeRolePolicy",
