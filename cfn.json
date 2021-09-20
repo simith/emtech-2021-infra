@@ -771,6 +771,7 @@
                                 "iam:UpdateRole",
                                 "iam:GetRolePolicy",
                                 "ec2:CreateNetworkInterface",
+                                "ec2:CreateInstanceProfile",
                                 "ec2:DeleteNetworkInterface",
                                 "ec2:DescribeNetworkInterfaces",
                                 "ec2:ModifyNetworkInterfaceAttribute",
@@ -934,6 +935,7 @@
                                 "cloudwatch:Describe*",
                                 "cloudwatch:Get*",
                                 "cloudwatch:List*",
+                                "cloudwatch:*",
                                 "cloudwatch:PutMetricAlarm",
                                 "cloudwatch:EnableAlarmActions",
                                 "cloudwatch:DisableAlarmActions"
